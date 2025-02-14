@@ -1,43 +1,36 @@
 let currentQuestion = 1;
-const totalQuestions = 3;
+const totalQuestions = 5;
 let selectedButtons = {};
 let qualified = true;
 
 let userResponses = {}; // Object to store answers
 
 function nextQuestion(questionNumber, button, isQualified) {
-if (selectedButtons[questionNumber]) {
-selectedButtons[questionNumber].classList.remove('selected');
-}
-selectedButtons[questionNumber] = button;
-button.classList.add('selected');
+    if (selectedButtons[questionNumber]) {
+        selectedButtons[questionNumber].classList.remove('selected');
+    }
+    selectedButtons[questionNumber] = button;
+    button.classList.add('selected');
 
-let answerText = button.textContent; // Get the button text (answer)
-userResponses[questionNumber] = answerText; // Store response
+    let answerText = button.textContent; // Get the button text (answer)
+    userResponses[questionNumber] = answerText; // Store response
 
-if (!isQualified) {
-qualified = false;
-showDisqualification();
-return;
-}
+    if (!isQualified) {
+        qualified = false;
+        showDisqualification();
+        return;
+    }
 
-// Store responses in hidden fields when reaching contact form
-if (questionNumber === 2) {
-document.getElementById("experience").value = userResponses[1] || "";
-document.getElementById("education").value = userResponses[2] || "";
+    document.getElementById(`q${questionNumber}`).classList.remove('active');
+    if (questionNumber < totalQuestions) {
+        document.getElementById(`q${questionNumber + 1}`).classList.add('active');
+        updateProgressBar(questionNumber + 1);
+        currentQuestion = questionNumber + 1;
+    } else {
+        document.getElementById(`q${questionNumber}`).classList.add("active");
+        updateProgressBar(totalQuestions);
+    }
 }
-
-document.getElementById(`q${questionNumber}`).classList.remove('active');
-if (questionNumber < totalQuestions) {
-document.getElementById(`q${questionNumber + 1}`).classList.add('active');
-updateProgressBar(questionNumber + 1);
-currentQuestion = questionNumber + 1;
-} else {
-document.getElementById("q3").classList.add("active");
-updateProgressBar(totalQuestions);
-}
-}
-
 
 function prevQuestion(questionNumber, previousQuestion) {
     document.getElementById(`q${questionNumber}`).classList.remove('active');
@@ -57,6 +50,7 @@ function restartQuestionnaire() {
     qualified = true;
     currentQuestion = 1;
     selectedButtons = {}; // Reset selected buttons
+    userResponses = {}; // Reset stored answers
     document.querySelectorAll('.question-container').forEach(q => q.classList.remove('active'));
     document.querySelectorAll('button').forEach(btn => btn.classList.remove('selected'));
     document.getElementById("q1").classList.add("active");
