@@ -115,3 +115,25 @@ ul {
     padding-left: 40px; /* Space for image */
     line-height: 20px; /* Adjust text alignment */
   }
+  
+
+  footer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 400px;
+    width: 100%;
+    
+}
+.footer-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+footer a{
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+}
