@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ATM Jobs</title>
     <link rel="icon" href="./images/TORNAU MOTOREN Logo - klein.png">
-    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="./styles/quiz.css">
 </head>
 <body>
     <div class="logo-container">
-        <img src="./images/Logo.png" alt="Tornau Logo" width="300" height="auto">
+        <a href="./index.html"><img src="./images/Logo.png" alt="Tornau Logo" width="300" height="auto"></a>
     <div class="container">
         <h2>KFZ Mechatroniker System- und Hochvolttechnik</h2>
         <div class="progress">
@@ -61,7 +61,7 @@
                 <input type="email" name="email" required>
 
                 <label>Telefonnummer:</label>
-                <input type="tel" name="phone">
+                <input type="tel" name="phone" pattern="[0-9]" required>
                 
                 <div id="datenschutz">
                 <input type="checkbox" name="datenschutz" required>
@@ -75,7 +75,7 @@
             </div>
             
             <div class="question-container" id="not-qualified">
-                <p>Vielen dank für dein Interesse, aber für die gesuchte Position bist du leider nicht geeignet, vielleicht ist hier etwas für dich dabei: <a href="https://tornau-motoren.de/de/jobs-stellenangebote">Stellenangebote</a></p>
+                <p>Vielen dank für dein Interesse, aber für die gesuchte Position bist du leider nicht geeignet, vielleicht ist hier etwas für dich dabei</p><a href="https://tornau-motoren.de/de/"><button>Stellenangebote</button></a>
                 <button type="button" onclick="restartQuestionnaire()">Neustarten</button>
             </div>
         </form>
