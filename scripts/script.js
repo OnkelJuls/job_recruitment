@@ -5,6 +5,15 @@ let qualified = true;
 
 let userResponses = {}; // Object to store answers
 
+function updateHiddenFields() {
+    for (let i = 1; i <= 4; i++) {
+        const input = document.querySelector(`input[name="answer${i}"]`);
+        if (input && userResponses[i]) {
+            input.value = userResponses[i];
+        }
+    }
+}
+
 function nextQuestion(questionNumber, button, isQualified) {
     if (selectedButtons[questionNumber]) {
         selectedButtons[questionNumber].classList.remove('selected');
@@ -14,6 +23,7 @@ function nextQuestion(questionNumber, button, isQualified) {
 
     let answerText = button.textContent; // Get the button text (answer)
     userResponses[questionNumber] = answerText; // Store response
+    updateHiddenFields();
 
     if (!isQualified) {
         qualified = false;
@@ -29,6 +39,33 @@ function nextQuestion(questionNumber, button, isQualified) {
     } else {
         document.getElementById(`q${questionNumber}`).classList.add("active");
         updateProgressBar(totalQuestions);
+    }
+
+    if (questionNumber === totalQuestions) {
+        const submitButton = document.querySelector('button[type="submit"]');
+        submitButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            submitForm();
+        });
+    }
+}
+
+function submitForm() {
+    const form = document.getElementById('questionnaire');
+    
+    if (currentQuestion === totalQuestions) {
+        const name = document.querySelector('input[name="name"]').value;
+        const email = document.querySelector('input[name="email"]').value;
+        const phone = document.querySelector('input[name="phone"]').value;
+        const datenschutz = document.querySelector('input[name="datenschutz"]').checked;
+
+        if (!name || !email || !phone || !datenschutz) {
+            alert('Bitte füllen Sie alle Pflichtfelder aus.');
+            return;
+        }
+
+        updateHiddenFields();
+        form.submit();
     }
 }
 

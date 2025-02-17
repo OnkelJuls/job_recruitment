@@ -1,3 +1,9 @@
+<?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+?>
+
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -15,7 +21,7 @@
         <div class="progress">
             <div class="progress-bar" id="progress-bar"></div>
         </div>
-        <form id="questionnaire">
+        <form id="questionnaire" action="send_mail.php" method="POST">
             <div class="question-container active" id="q1">
                 <label>Welche Qualifikation bringst du mit?</label>
                 <button type="button" onclick="nextQuestion(1, this, false)">Keine</button>
@@ -61,8 +67,13 @@
                 <input type="email" name="email" required>
 
                 <label>Telefonnummer:</label>
-                <input type="tel" name="phone" pattern="[0-9]" required>
+                <input type="tel" name="phone" required>
                 
+                <input type="hidden" name="answer1" id="answer1">
+                <input type="hidden" name="answer2" id="answer2">
+                <input type="hidden" name="answer3" id="answer3">
+                <input type="hidden" name="answer4" id="answer4">
+
                 <div id="datenschutz">
                 <input type="checkbox" name="datenschutz" required>
                 <label for="datenschutz">Hiermit akzeptire ich die Datenschutzbestimmungen</label>
@@ -82,6 +93,6 @@
         </form>
     </div>
 </div>
-    <script src="./scripts/script.js"></script>
+    <script src="./scripts/script.js?v=<?php echo time(); ?>"></script>
 </body>
 </html>
