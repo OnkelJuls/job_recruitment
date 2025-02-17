@@ -1,0 +1,47 @@
+*{
+box-sizing: border-box; 
+margin: 0; 
+padding: 0; 
+}
+body{ 
+font-family: Arial, sans-serif; 
+display: flex; 
+justify-content: center; 
+align-items: center; 
+min-height: 100vh; 
+padding: 20px; 
+background: #f4f4f4; 
+}
+@media (max-width: 480px){
+body{ 
+    padding: 10px; 
+}
+.container{ 
+    padding: 15px; 
+}
+button{ 
+    font-size: 14px; 
+    padding: 10px; 
+}
+input{ 
+    font-size: 14px; 
+    padding: 8px; 
+}
+}
+.logo-container{
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 55px;
+}
+.wrapper{
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+.logo-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 55px;
+}
